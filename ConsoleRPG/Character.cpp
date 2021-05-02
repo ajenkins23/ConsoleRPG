@@ -22,6 +22,7 @@ Character::Character()
 	this->damageMin = 0;
 	this->damageMax = 0;
 	this->defence = 0;
+	this->accuracy = 0;
 	this->luck = 0;
 }
 
@@ -58,6 +59,7 @@ void Character::initialize(string name) {
 	this->damageMax = this->strength + 2;
 
 	this->defence = this->dexterity + (this->intelligence/2);
+	this->accuracy = this->dexterity / 2;
 	this->luck = this->intelligence;
 
 	this->statPoints = 0;
@@ -78,7 +80,9 @@ void Character::printStats() const {
 	cout << "= HP : " << this->hp << " / " << this->hpMax << endl;
 	cout << "= Stamina : " << this->stamina << " / " << this->staminaMax << endl;
 	cout << "= Damage : " << this->damageMin << " - " << this->damageMax << endl;
-	cout << "= Defence : " << this->intelligence << endl;
+	cout << "= Defence : " << this->defence << endl;
+	cout << "= Accuracy : " << this->accuracy << endl;
+	cout << "= Luck : " << this->luck << endl;
 	cout << endl;
 
 

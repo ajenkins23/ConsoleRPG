@@ -16,6 +16,9 @@ Game::~Game()
 }
 
 void Game::initGame() {
+	Enemy e(rand() & 10 + 1);
+	cout << e.getAsString() << endl;
+
 	this->createNewCharacter();
 }
 
@@ -84,5 +87,9 @@ void Game::saveCharacters() {
 }
 
 void Game::loadCharacters() {
+
+}
+
+void Game::travel() {
 
 }
