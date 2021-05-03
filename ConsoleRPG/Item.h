@@ -1,7 +1,7 @@
 #pragma once
 #include "Functions.h"
-#include<iostream>
-#include<iomanip>
+#include <iostream>
+#include <iomanip>
 #include <ctime>
 #include <string>
 #include <vector>

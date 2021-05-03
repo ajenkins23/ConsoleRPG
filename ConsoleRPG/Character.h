@@ -2,6 +2,8 @@
 #include "Inventory.h"
 #include "Enemy.h";
 
+
+
 class Character
 {
 public:
@@ -16,38 +18,48 @@ public:
 	void levelUp();
 
 	// Accessors
-	inline const double& getX() { return this->xPos; }
-	inline const double& getY() { return this->yPos; }
+	inline const double& getX() const { return this->xPos; }
+	inline const double& getY() const { return this->yPos; }
+	inline const int& getDistanceTraveled() const { return this->distanceTravled; }
 
-	inline const string& getName() { return this->name; }
+	inline const string& getName() const { return this->name; }
 
-	inline const int& getLevel() { return this->level; }
-	inline const int& getExp() { return this->exp; }
-	inline const int& getExpNext() { return this->expNext; }
-	inline const int& getHp() { return this->hp; }
-	inline const int& getHpMax() { return this->hpMax; }
-	inline const int& getStamina() { return this->stamina; }
-	inline const int& getStaminaMax() { return this->staminaMax; }
-	inline const int& getDamageMin() { return this->damageMin; }
-	inline const int& getDamageMax() { return this->damageMax; }
-	inline const int& getDefence() { return this->defence; }
-	inline const int& getAccuracy() { return this->accuracy; }
-	inline const int& getLuck() { return this->luck; }
+	inline const int& getLevel() const { return this->level; }
+	inline const int& getExp() const { return this->exp; }
+	inline const int& getExpNext() const { return this->expNext; }
+	inline const int& getHp() const { return this->hp; }
+	inline const int& getHpMax() const { return this->hpMax; }
+	inline const int& getStamina() const { return this->stamina; }
+	inline const int& getStaminaMax() const { return this->staminaMax; }
+	inline const int& getDamageMin() const { return this->damageMin; }
+	inline const int& getDamageMax() const { return this->damageMax; }
+	inline const int& getDefence() const { return this->defence; }
+	inline const int& getAccuracy() const { return this->accuracy; }
+	inline const int& getLuck() const { return this->luck; }
 
-	inline const int& getStrength() { return this->strength; }
-	inline const int& getVitality() { return this->vitality; }
-	inline const int& getDexterity() { return this->dexterity; }
-	inline const int& getIntelligence() { return this->intelligence; }
+	inline const int& getStrength() const { return this->strength; }
+	inline const int& getVitality() const { return this->vitality; }
+	inline const int& getDexterity() const { return this->dexterity; }
+	inline const int& getIntelligence() const { return this->intelligence; }
 
-	inline const int& getStatPoints() { return this->statPoints; }
-	inline const int& getSkillPoints() { return this->skillPoints; }
+	inline const int& getStatPoints() const { return this->statPoints; }
+	inline const int& getSkillPoints() const { return this->skillPoints; }
+
+	inline const int& getGold() const { return this->gold; }
 
 
 	// Modifiers
+	inline void setDistancedTraveled(const int& distanceTraveled) { this->distanceTravled = distanceTraveled; }
+	inline void travel() { this->distanceTravled++; }
+
+
 
 private:
 	double xPos;
 	double yPos;
+	int distanceTravled;
+	
+	string name;
 
 	Inventory inventory;
 	Weapon weapon;
@@ -56,7 +68,8 @@ private:
 	Armor armorArms;
 	Armor armorLegs;
 
-	string name;
+	int gold;
+
 	int level;
 	int exp;
 	int expNext;

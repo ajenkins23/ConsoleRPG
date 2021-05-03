@@ -1,5 +1,4 @@
 #include "Game.h"
-#include "Character.h"
 
 Game::Game()
 {
@@ -16,8 +15,9 @@ Game::~Game()
 }
 
 void Game::initGame() {
-	Enemy e(rand() & 10 + 1);
-	cout << e.getAsString() << endl;
+	Puzzle p("puz.txt");
+	cout << p.getAsString();
+
 
 	this->createNewCharacter();
 }
@@ -91,5 +91,8 @@ void Game::loadCharacters() {
 }
 
 void Game::travel() {
+	this->characters[this->activeCharacter].travel();
 
+	Event event;
+	event.generateEvent(this->characters[this->activeCharacter]);
 }
