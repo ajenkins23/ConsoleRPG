@@ -1,6 +1,5 @@
 #pragma once
-#include"Character.h"
-
+#include "Event.h"
 
 using namespace std;
 
@@ -18,6 +17,7 @@ public:
 	void createNewCharacter();
 	void saveCharacters();
 	void loadCharacters();
+	void travel();
 
 	// Accessors
 	inline bool getPlaying() const {

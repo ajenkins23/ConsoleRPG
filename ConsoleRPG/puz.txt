@@ -1,0 +1,6 @@
+fire?
+3
+heals
+burns
+cools
+1

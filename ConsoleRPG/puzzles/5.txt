@@ -1,0 +1,6 @@
+Puzzle 5 = ?
+3
+four
+five
+six
+1
