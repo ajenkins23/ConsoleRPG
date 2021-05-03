@@ -1,0 +1,6 @@
+Puzzle 3 = ?
+3
+one
+two
+three
+2

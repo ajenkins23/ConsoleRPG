@@ -15,10 +15,6 @@ Game::~Game()
 }
 
 void Game::initGame() {
-	Puzzle p("puz.txt");
-	cout << p.getAsString();
-
-
 	this->createNewCharacter();
 }
 
@@ -43,18 +39,26 @@ void Game::mainMenu() {
 	case 0:
 		playing = false;
 		break;
+	case 1:
+		system("cls");
+		this->travel();
+		break;
 	case 5:
+		system("cls");
 		this->characters[this->activeCharacter].printStats();
 		break;
 	case 6:
+		system("cls");
 		cin.ignore();
 		this->createNewCharacter();
 		this->saveCharacters();
 		break;
 	case 7:
+		system("cls");
 		this->saveCharacters();
 		break;
 	case 8:
+		system("cls");
 		this->loadCharacters();
 		break;
 	default:

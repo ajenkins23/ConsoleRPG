@@ -14,6 +14,8 @@ public:
 	virtual ~Puzzle();
 	string getAsString();
 
+	const int& getCorrectAnswer() const { return this->correctAnswer; }
+
 private:
 	string question;
 	vector<string> answers;

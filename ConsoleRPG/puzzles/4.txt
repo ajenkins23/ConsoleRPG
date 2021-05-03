@@ -1,0 +1,6 @@
+Puzzle 4 = ?
+3
+four
+five
+six
+0
