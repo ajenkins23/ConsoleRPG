@@ -98,7 +98,50 @@ void Game::saveCharacters() {
 }
 
 void Game::loadCharacters() {
+	ifstream inFile(this->filename);
+	this->characters.clear();
 
+	string line = "";
+	string name = "";
+	int distanceTraveled, level, exp, strength, vitality, dexterity, intelligence,
+		hp, stamina, statPoints, skillPoints = 0;
+	stringstream str;
+
+	if (inFile.is_open()) {
+		while (getline(inFile, line)) {
+			str.str(line);
+
+			str >> name;
+			str >> distanceTraveled;
+			str >> level;
+			str >> exp;
+			str >> strength;
+			str >> vitality;
+			str >> dexterity;
+			str >> intelligence;
+			str >> hp;
+			str >> stamina;
+			str >> statPoints;
+			str >> skillPoints;
+
+			Character temp(name, distanceTraveled, level, exp, strength, vitality, dexterity, intelligence,
+				hp, stamina, statPoints, skillPoints);
+
+			cout << "Character " << name << " loaded!" << endl;
+			this->characters.push_back(temp);
+			str.clear();
+		}
+	}
+	inFile.close();
+
+	if (this->characters.size() <= 0) {
+		throw("ERROR!! No characters loaded or empty file.");
+	}
+	else
+	{
+		activeCharacter = 0;
+		cout << "Character " << this->characters[this->activeCharacter].getName() << " is currently active!" << endl;
+	}
 }
 
 void Game::travel() {
