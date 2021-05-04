@@ -14,7 +14,7 @@ public:
 	virtual ~Puzzle();
 	string getAsString();
 
-	const int& getCorrectAnswer() const { return this->correctAnswer; }
+	inline const int& getCorrectAnswer() const { return this->correctAnswer; }
 
 private:
 	string question;

@@ -51,6 +51,7 @@ public:
 	// Modifiers
 	inline void setDistancedTraveled(const int& distanceTraveled) { this->distanceTravled = distanceTraveled; }
 	inline void travel() { this->distanceTravled++; }
+	inline void gainExperience(const int& expierience) { this->exp += expierience; }
 
 
 

@@ -110,7 +110,7 @@ string Character::getAsString() const {
 
 
 void Character::levelUp() {
-	 while (this->exp >= this->expNext) {
+	if (this->exp >= this->expNext) {
 		this->exp -= this->expNext;
 		this->level++;
 		this->expNext =
@@ -119,5 +119,10 @@ void Character::levelUp() {
 				17 * this->level - 12)) + 25;
 		this->skillPoints++;
 		this->statPoints++;
+		cout << "You are now level " << this->level << "!!" << endl << endl;
+	}
+	else
+	{
+		cout << "Not enough exp..." << endl << endl;
 	}
 }
