@@ -18,8 +18,9 @@ public:
 	void printStats() const;
 
 	void initialize(const string name);
-	void levelUp();
 	void updateStats();
+
+	bool levelUp();
 
 	// Accessors
 	inline const int& getDistanceTraveled() const { return this->distanceTravled; }
@@ -54,6 +55,11 @@ public:
 	inline void setDistancedTraveled(const int& distanceTraveled) { this->distanceTravled = distanceTraveled; }
 	inline void travel() { this->distanceTravled++; }
 	inline void gainExperience(const int& expierience) { this->exp += expierience; }
+	inline void addStrength() { this->strength++; }
+	inline void addVitality() { this->vitality++; }
+	inline void addDexterity() { this->dexterity++; }
+	inline void addIntelligence() { this->intelligence++; }
+	inline void removeStatPoint() { this->statPoints--; }
 
 
 
