@@ -19,6 +19,8 @@ void Game::initGame() {
 }
 
 void Game::mainMenu() {
+
+
 	if (this->characters[activeCharacter].getExp() >= this->characters[activeCharacter].getExpNext()) {
 		cout << "LEVEL UP AVAIDABLE!!!" << endl << endl;
 	}
@@ -40,6 +42,18 @@ void Game::mainMenu() {
 	cin >> choice;
 	cout << endl;
 
+	while (cin.fail()) {
+		cout << "Fualty input!" << endl;
+		cin.clear();
+		cin.ignore(100, '\n');
+
+		cout << endl << "Choice: ";
+		cin >> choice;
+	}
+
+	cin.ignore(100, '\n');
+	cout << endl;
+
 	switch (choice) {
 	case 0:
 		playing = false;
@@ -48,7 +62,7 @@ void Game::mainMenu() {
 		this->travel();
 		break;
 	case 3:
-		this->characters[activeCharacter].levelUp();
+		this->levelUpCharacter();
 		break;
 	case 5:
 		system("cls");
@@ -83,6 +97,54 @@ void Game::createNewCharacter() {
 	this->characters[this->activeCharacter].initialize(name);
 }
 
+void Game::levelUpCharacter() {
+	Character& active = this->characters[this->activeCharacter];
+	if (active.levelUp()) {
+		cout << "Stat points to allocate " << active.getStatPoints() << endl;
+
+		cout << "Stat to upgrade: " << endl;;
+		cout << "0: Strength     [" << active.getStrength() << "]" << endl;
+		cout << "1: Vitality     [" << active.getVitality() << "]" << endl;
+		cout << "2: Dexterity    [" << active.getDexterity() << "]" << endl;
+		cout << "3: Intelligence [" << active.getIntelligence() << "]" << endl;
+
+		cin >> this->choice;
+		cout << endl;
+
+		while (cin.fail() || this->choice > 3) {
+			cout << "Fualty input!" << endl;
+			cin.clear();
+			cin.ignore(100, '\n');
+
+			cout << endl << "Stat to upgrade: ";
+			cin >> this->choice;
+		}
+
+		cin.ignore(100, '\n');
+		cout << endl;
+
+		switch (this->choice)
+		{
+		case 0:
+			active.addStrength();
+			break;
+		case 1:
+			active.addVitality();
+			break;
+		case 2:
+			active.addDexterity();
+			break;
+		case 3:
+			active.addIntelligence();
+			break;
+		default:
+			break;
+		}
+
+		active.removeStatPoint();
+		active.updateStats();
+	}
+}
 
 void Game::saveCharacters() {
 	ofstream outFile(this->filename);

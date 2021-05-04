@@ -53,6 +53,19 @@ void Event::puzzleEncounter(Character& character) {
 		cout << puzzle.getAsString();
 		cout << "\nYour ANSWER: ";
 		cin >> userAnswer;
+
+		while (cin.fail()) {
+			cout << "Fualty input!" << endl;
+			cin.clear();
+			cin.ignore(100, '\n');
+
+			cout << endl << "Choice: ";
+			cin >> userAnswer;
+		}
+
+		cin.ignore(100, '\n');
+		cout << endl;
+
 		cout << "\n";
 		if (puzzle.getCorrectAnswer() == userAnswer) {
 			completed = true;
