@@ -19,6 +19,11 @@ void Game::initGame() {
 }
 
 void Game::mainMenu() {
+	if (this->characters[activeCharacter].getExp() >= this->characters[activeCharacter].getExpNext()) {
+		cout << "LEVEL UP AVAIDABLE!!!" << endl << endl;
+	}
+
+
 	cout << "= MAIN MENU =" << endl << endl;
 	cout << "0: Quit" << endl;
 	cout << "1: Travel" << endl;
@@ -40,8 +45,10 @@ void Game::mainMenu() {
 		playing = false;
 		break;
 	case 1:
-		system("cls");
 		this->travel();
+		break;
+	case 3:
+		this->characters[activeCharacter].levelUp();
 		break;
 	case 5:
 		system("cls");
@@ -54,13 +61,13 @@ void Game::mainMenu() {
 		this->saveCharacters();
 		break;
 	case 7:
-		system("cls");
 		this->saveCharacters();
 		break;
 	case 8:
-		system("cls");
 		this->loadCharacters();
 		break;
+	case 555:
+		this->characters[this->activeCharacter].gainExperience(9*9*9*9*9*9*9);
 	default:
 		break;
 	}
@@ -91,7 +98,50 @@ void Game::saveCharacters() {
 }
 
 void Game::loadCharacters() {
+	ifstream inFile(this->filename);
+	this->characters.clear();
 
+	string line = "";
+	string name = "";
+	int distanceTraveled, level, exp, strength, vitality, dexterity, intelligence,
+		hp, stamina, statPoints, skillPoints = 0;
+	stringstream str;
+
+	if (inFile.is_open()) {
+		while (getline(inFile, line)) {
+			str.str(line);
+
+			str >> name;
+			str >> distanceTraveled;
+			str >> level;
+			str >> exp;
+			str >> strength;
+			str >> vitality;
+			str >> dexterity;
+			str >> intelligence;
+			str >> hp;
+			str >> stamina;
+			str >> statPoints;
+			str >> skillPoints;
+
+			Character temp(name, distanceTraveled, level, exp, strength, vitality, dexterity, intelligence,
+				hp, stamina, statPoints, skillPoints);
+
+			cout << "Character " << name << " loaded!" << endl;
+			this->characters.push_back(temp);
+			str.clear();
+		}
+	}
+	inFile.close();
+
+	if (this->characters.size() <= 0) {
+		throw("ERROR!! No characters loaded or empty file.");
+	}
+	else
+	{
+		activeCharacter = 0;
+		cout << "Character " << this->characters[this->activeCharacter].getName() << " is currently active!" << endl;
+	}
 }
 
 void Game::travel() {

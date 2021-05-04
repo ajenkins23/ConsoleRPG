@@ -1,6 +1,8 @@
 #pragma once
 #include "Weapon.h"
 #include "Armor.h"
+#include <sstream>
+
 
 class Inventory
 {

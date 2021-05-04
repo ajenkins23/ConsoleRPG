@@ -44,18 +44,24 @@ void Event::puzzleEncounter(Character& character) {
 
 	int chances = 3;
 	int userAnswer = 0;
+	int expGained = rand() % (character.getLevel() * chances * character.getLuck()) + 1;
 
 	while (!completed && chances > 0)
 	{
-		chances--;
+		system("cls");
+		cout << "Chances left: " << chances << endl << endl;
 		cout << puzzle.getAsString();
 		cout << "\nYour ANSWER: ";
 		cin >> userAnswer;
 		cout << "\n";
 		if (puzzle.getCorrectAnswer() == userAnswer) {
 			completed = true;
+			character.gainExperience(expGained);
+			cout << "You have gained " << expGained << " experience!!" << endl;
 			// Give user exp and etc
 		}
+		chances--;
+
 	}
 
 	if (completed)
