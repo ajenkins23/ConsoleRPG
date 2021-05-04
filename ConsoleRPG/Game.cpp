@@ -19,6 +19,10 @@ void Game::initGame() {
 }
 
 void Game::mainMenu() {
+	cout << "ENTER to continue..." << endl;
+	cin.get();
+	system("cls");
+
 	if (this->characters[activeCharacter].getExp() >= this->characters[activeCharacter].getExpNext()) {
 		cout << "LEVEL UP AVAIDABLE!!!" << endl << endl;
 	}
@@ -38,6 +42,18 @@ void Game::mainMenu() {
 
 	cout << endl << "Coice: "; 
 	cin >> choice;
+	cout << endl;
+
+	while (cin.fail()) {
+		cout << "Fualty input!" << endl;
+		cin.clear();
+		cin.ignore(100, '\n');
+
+		cout << endl << "Choice: ";
+		cin >> choice;
+	}
+
+	cin.ignore(100, '\n');
 	cout << endl;
 
 	switch (choice) {
