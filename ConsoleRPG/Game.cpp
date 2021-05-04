@@ -19,9 +19,7 @@ void Game::initGame() {
 }
 
 void Game::mainMenu() {
-	cout << "ENTER to continue..." << endl;
-	cin.get();
-	system("cls");
+
 
 	if (this->characters[activeCharacter].getExp() >= this->characters[activeCharacter].getExpNext()) {
 		cout << "LEVEL UP AVAIDABLE!!!" << endl << endl;
