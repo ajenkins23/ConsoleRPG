@@ -1,6 +1,5 @@
 #pragma once
 #include "Event.h"
-#include "dArray.h"
 
 using namespace std;
 
@@ -20,6 +19,7 @@ public:
 	void saveCharacters();
 	void loadCharacters();
 	void travel();
+	void selectCharacter();
 
 	// Accessors
 	inline bool getPlaying() const {
@@ -36,5 +36,9 @@ private:
 	int activeCharacter;
 	vector<Character> characters;
 	string filename;
+
+	// Enemy related
+	dArray<Enemy> enemies;
+
 };
 

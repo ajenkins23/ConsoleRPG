@@ -18,7 +18,7 @@ public:
 private:
 	unsigned cap;
 	unsigned initialCap;
-	unsigned nrOfElements();
+	unsigned nrOfElements;
 
 	T** array;
 
@@ -34,13 +34,13 @@ dArray<T>::dArray(unsigned size) {
 
 	this->array = new T*[this->cap];
 
-	this->initialize();
+	this->initialize(0);
 }
 
 template<typename T>
 dArray<T>::dArray(const dArray& obj) {
 	this->initialCap = obj.initialCap;
-	this->cap = obj.size;
+	this->cap = obj.cap;
 	this->nrOfElements = obj.nrOfElements;
 
 	this->array = new T*[this->cap];
@@ -50,7 +50,7 @@ dArray<T>::dArray(const dArray& obj) {
 		this->array[i] = new T(*obj.array[i]);
 	}
 
-	this->initialize();
+	this->initialize(0);
 }
 
 template<typename T>
@@ -89,7 +89,7 @@ void dArray<T>::operator = (const dArray& obj) {
 		this->array[i] = new T(*obj.array[i]);
 	}
 
-	this->initialize();
+	this->initialize(0);
 }
 
 template<typename T>
@@ -103,7 +103,7 @@ void dArray<T>::expand() {
 		tempArray[i] = this->array[i];
 	}
 
-	delet[] array;
+	delete[] array;
 	this->array = tempArray;
 
 	this->initialize();
@@ -111,7 +111,7 @@ void dArray<T>::expand() {
 
 template<typename T>
 void dArray<T>::initialize(unsigned from) {
-	for (size_t from = 0; from < this->cap; from++)
+	for (size_t i = from; from < this->cap; from++)
 	{
 		this->array[i] = nullptr;
 	}

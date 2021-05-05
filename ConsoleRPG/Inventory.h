@@ -2,6 +2,7 @@
 #include "Weapon.h"
 #include "Armor.h"
 #include <sstream>
+#include "dArray.h"
 
 
 class Inventory

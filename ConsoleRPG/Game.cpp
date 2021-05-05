@@ -8,7 +8,6 @@ Game::Game()
 	this->filename = "characters.txt";
 }
 
-
 Game::~Game()
 {
 
@@ -26,7 +25,8 @@ void Game::mainMenu() {
 	}
 
 
-	cout << "= MAIN MENU =" << endl << endl;
+	cout << "= MAIN MENU =" << endl;
+	cout << "= " << this->characters[this->activeCharacter].getName() << " =" << endl << endl;
 	cout << "0: Quit" << endl;
 	cout << "1: Travel" << endl;
 	cout << "2: Shop" << endl;
@@ -36,6 +36,7 @@ void Game::mainMenu() {
 	cout << "6: Create new character" << endl;
 	cout << "7: Save character" << endl;
 	cout << "8: Load character" << endl;
+	cout << "9: Select character" << endl;
 	cout << endl;
 
 	cout << endl << "Coice: "; 
@@ -55,42 +56,64 @@ void Game::mainMenu() {
 	cout << endl;
 
 	switch (choice) {
-	case 0:
+	case 0: // QUIT
 		playing = false;
 		break;
-	case 1:
+	case 1: // TRAVEL
 		this->travel();
 		break;
-	case 3:
+	case 3: // LEVEL UP
 		this->levelUpCharacter();
 		break;
-	case 5:
-		system("cls");
+	case 5: // SHOW STATS
 		this->characters[this->activeCharacter].printStats();
 		break;
-	case 6:
-		system("cls");
+	case 6: // CREATE NEW CHARACTER
 		cin.ignore();
 		this->createNewCharacter();
 		this->saveCharacters();
 		break;
-	case 7:
+	case 7: // SAVE CHARACTER
 		this->saveCharacters();
 		break;
-	case 8:
+	case 8: // LOAD CHARACTER
 		this->loadCharacters();
 		break;
+	case 9: // SELECT CHARACTER
+		this->selectCharacter();
+		break;
 	case 555:
-		this->characters[this->activeCharacter].gainExperience(9*9*9*9*9*9*9);
+		this->characters[this->activeCharacter].gainExperience(15*15*15*15*15*15*15*15);
 	default:
 		break;
 	}
+}
+
+void Game::selectCharacter() {
+	int choice;
+	for (size_t i = 0; i < this->characters.size(); i++)
+	{
+		Character& active = this->characters[i];
+		cout << i << ": " << active.getName() << " Level: " << active.getLevel() << endl;
+	}
+
+	cout << "Select character: ";
+	cin >> choice;
+	this->activeCharacter = choice;
 }
 
 void Game::createNewCharacter() {
 	string name;
 	cout << "Enter name for Character : ";
 	getline(cin, name);
+
+	for (size_t i = 0; i < this->characters.size(); i++)
+	{
+		while (name == this->characters[i].getName()) {
+			cout << "Character with that name allready exists. Please enter different name: ";
+			getline(cin, name);
+		}
+	}
 
 	this->characters.push_back(Character());
 	this->activeCharacter = this->characters.size() - 1;
@@ -210,5 +233,5 @@ void Game::travel() {
 	this->characters[this->activeCharacter].travel();
 
 	Event event;
-	event.generateEvent(this->characters[this->activeCharacter]);
+	event.generateEvent(this->characters[this->activeCharacter], this->enemies);
 }
