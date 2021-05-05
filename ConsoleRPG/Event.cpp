@@ -44,13 +44,13 @@ void Event::enemyEncounter(Character& character, dArray<Enemy> enemies) {
 
 	for (size_t i = 0; i < nrOfEnemies; i++)
 	{
-		enemies.push(Enemy(character.getLevel()));
+		enemies.push(Enemy(character.getLevel(), "Enemy_"+to_string(i)));
 	}
 	cout << "Nr of enemies = " << enemies.size() << endl; 
 
 	while (!escape && !playerDefeated && !enemiesDefeated)
 	{
-		if (playerTurn) {
+		if (playerTurn && !playerDefeated) {
 			// MENU
 			cout << "= BATTLE MENU =\n\n";
 			cout << "0: Escape\n";
@@ -67,6 +67,8 @@ void Event::enemyEncounter(Character& character, dArray<Enemy> enemies) {
 				escape = true;
 				break;
 			case 1:
+				// Need to implement a lot of propabilities
+
 				break;
 			case 2:
 				break;
@@ -80,7 +82,7 @@ void Event::enemyEncounter(Character& character, dArray<Enemy> enemies) {
 
 			playerTurn = false;
 		}
-		else
+		else if(!playerTurn && !escape && !enemiesDefeated) 
 		{
 			for (size_t i = 0; i < enemies.size(); i++)
 			{
