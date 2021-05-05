@@ -106,7 +106,7 @@ void dArray<T>::expand() {
 	delete[] array;
 	this->array = tempArray;
 
-	this->initialize();
+	this->initialize(0);
 }
 
 template<typename T>

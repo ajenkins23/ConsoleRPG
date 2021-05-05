@@ -26,3 +26,10 @@ string Enemy::getAsString() const {
 		+ "Accuracy: " + to_string(this->accuracy) + "\n"
 		+ "Drop Chance: " + to_string(this->dropChance);
 }
+
+void Enemy::takeDamage(int damage) {
+	this->hp -= damage;
+	if (this->hp <= 0) {
+		this->hp = 0;
+	}
+}

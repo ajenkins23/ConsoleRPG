@@ -33,13 +33,71 @@ void Event::generateEvent(Character& character, dArray<Enemy> enemies) {
 
 // Different events
 void Event::enemyEncounter(Character& character, dArray<Enemy> enemies) {
+	system("cls");
 	bool escape = false;
-	bool playerdefeated = false;
-	bool enemyDefeated = false;
+	bool playerDefeated = false;
+	bool enemiesDefeated = false;
+	bool playerTurn = true;
 
-	while (!escape && !playerdefeated && !enemyDefeated)
+	int choice = 0;
+	int nrOfEnemies = rand() % 5 + 1;
+
+	for (size_t i = 0; i < nrOfEnemies; i++)
 	{
-		
+		enemies.push(Enemy(character.getLevel()));
+	}
+	cout << "Nr of enemies = " << enemies.size() << endl; 
+
+	while (!escape && !playerDefeated && !enemiesDefeated)
+	{
+		if (playerTurn) {
+			// MENU
+			cout << "= BATTLE MENU =\n\n";
+			cout << "0: Escape\n";
+			cout << "1: Attack\n";
+			cout << "2: Defend\n";
+			cout << "3: Use Item\n";
+
+			cout << "Choice: ";
+
+			cin >> choice;
+			switch (choice)
+			{
+			case 0:
+				escape = true;
+				break;
+			case 1:
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			default:
+				break;
+			}
+
+			// MOVE
+
+			playerTurn = false;
+		}
+		else
+		{
+			for (size_t i = 0; i < enemies.size(); i++)
+			{
+
+			}
+
+			playerTurn = true;
+		}
+
+		// CONDITIONS
+
+		if (!character.isAlive()) {
+			playerDefeated = true;
+		}
+		else if (enemies.size() <= 0) {
+			enemiesDefeated = true;
+		}
 	}
 }
 

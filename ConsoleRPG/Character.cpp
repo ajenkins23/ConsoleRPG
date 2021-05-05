@@ -132,7 +132,6 @@ string Character::getAsString() const {
 		+ to_string(this->skillPoints) + " ";
 }
 
-
 bool Character::levelUp() {
 	if (this->exp >= this->expNext) {
 		this->exp -= this->expNext;
@@ -170,4 +169,12 @@ void Character::updateStats() {
 	this->defence = this->dexterity + (this->intelligence / 2);
 	this->accuracy = this->dexterity / 2;
 	this->luck = this->intelligence;
+}
+
+void Character::takeDamage(const int damage){
+	this->hp -= damage;
+
+	if (this->hp <= 0) {
+		this->hp = 0;
+	}
 }

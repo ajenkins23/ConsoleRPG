@@ -24,7 +24,7 @@ public:
 
 	// Accessors
 	inline const int& getDistanceTraveled() const { return this->distanceTravled; }
-
+	
 	inline const string& getName() const { return this->name; }
 
 	inline const int& getLevel() const { return this->level; }
@@ -50,6 +50,7 @@ public:
 
 	inline const int& getGold() const { return this->gold; }
 
+	inline const bool isAlive() { return this->hp > 0; }
 
 	// Modifiers
 	inline void setDistancedTraveled(const int& distanceTraveled) { this->distanceTravled = distanceTraveled; }
@@ -60,6 +61,7 @@ public:
 	inline void addDexterity() { this->dexterity++; }
 	inline void addIntelligence() { this->intelligence++; }
 	inline void removeStatPoint() { this->statPoints--; }
+	void takeDamage(const int damage);
 
 
 
